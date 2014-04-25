@@ -1,4 +1,4 @@
-/**
+                 /**
  * Class Room - a room in an adventure game.
  *
  * This class is part of the "World of Zuul" application. 
