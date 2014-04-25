@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -35,14 +35,14 @@ public class Game
     private void createRooms()
     {
         Room holl, biblioteca, aseos, laboratorio, salida;
-      
+
         // create the rooms
         holl = new Room(" en el holl ");
         biblioteca = new Room(" en la librería ");
         aseos = new Room("en los aseos");
         laboratorio = new Room("en el laboratorio");
-        salida = new Room("en la salida");
-        
+        salida = new Room("la salida");
+
         // initialise room exits
         holl.setExits(aseos, salida, laboratorio, biblioteca);
         biblioteca.setExits(null, holl, null,null);
@@ -62,7 +62,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -81,21 +81,8 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println("Tu estás en " + currentRoom.getDescription());
-        System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        System.out.println();
+        printLocationInfo();
+
     }
 
     /**
@@ -111,7 +98,6 @@ public class Game
             System.out.println("I don't know what you mean...");
             return false;
         }
-
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help")) {
             printHelp();
@@ -176,21 +162,7 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
-            System.out.println("Tu estás " + currentRoom.getDescription());
-            System.out.print("Exits: ");
-            if(currentRoom.northExit != null) {
-                System.out.print("north ");
-            }
-            if(currentRoom.eastExit != null) {
-                System.out.print("east ");
-            }
-            if(currentRoom.southExit != null) {
-                System.out.print("south ");
-            }
-            if(currentRoom.westExit != null) {
-                System.out.print("west ");
-            }
-            System.out.println();
+            printLocationInfo();
         }
     }
 
@@ -208,5 +180,23 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+
+    private void printLocationInfo(){
+        System.out.println("Tu estás en " + currentRoom.getDescription());
+        System.out.print("Exits: ");
+        if(currentRoom.northExit != null) {
+            System.out.print("north ");
+        }
+        if(currentRoom.eastExit != null) {
+            System.out.print("east ");
+        }
+        if(currentRoom.southExit != null) {
+            System.out.print("south ");
+        }
+        if(currentRoom.westExit != null) {
+            System.out.print("west ");
+        }
+        System.out.println();
     }
 }
