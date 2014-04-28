@@ -44,11 +44,11 @@ public class Game
         salida = new Room("la salida");
 
         // initialise room exits
-        holl.setExits(aseos, salida, laboratorio, biblioteca, null);
-        biblioteca.setExits(null, holl, null,null,null);
-        aseos.setExits(null, null, holl, null,salida);
-        laboratorio.setExits(holl, salida, null, null,null);
-        salida.setExits(null, null, null, holl,null);
+        holl.setExits(aseos, salida, laboratorio, biblioteca, null, null);
+        biblioteca.setExits(null, holl, null,null,null,null);
+        aseos.setExits(null, null, holl, null,salida,null);
+        laboratorio.setExits(holl, salida, null, null,null,biblioteca);
+        salida.setExits(null, null, null, holl,null, aseos);
 
         currentRoom = holl;  // start game 
     }
