@@ -44,11 +44,11 @@ public class Game
         salida = new Room("la salida");
 
         // initialise room exits
-        holl.setExits(aseos, salida, laboratorio, biblioteca);
-        biblioteca.setExits(null, holl, null,null);
-        aseos.setExits(null, null, holl, null);
-        laboratorio.setExits(holl, salida, null, null);
-        salida.setExits(null, null, null, holl);
+        holl.setExits(aseos, salida, laboratorio, biblioteca, null);
+        biblioteca.setExits(null, holl, null,null,null);
+        aseos.setExits(null, null, holl, null,salida);
+        laboratorio.setExits(holl, salida, null, null,null);
+        salida.setExits(null, null, null, holl,null);
 
         currentRoom = holl;  // start game 
     }
@@ -156,6 +156,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("southEast")){
+        nextRoom = currentRoom.southEastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -196,6 +199,9 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.southEastExit != null){
+            System.out.println("south-East ");
         }
         System.out.println();
     }
