@@ -1,4 +1,4 @@
-                 /**
+/**
  * Class Room - a room in an adventure game.
  *
  * This class is part of the "World of Zuul" application. 
@@ -14,12 +14,12 @@
  */
 public class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room southEastExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room southEastExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -61,5 +61,28 @@ public class Room
     {
         return description;
     }
+
+    public Room getExit(String direction)
+    {
+        Room room = null;
+
+        if(direction.equals("north")) {
+            room = northExit;
+        }
+        if(direction.equals("east")) {
+            room = eastExit;
+        }
+        if(direction.equals("south")) {
+            room = southExit;
+        }
+        if(direction.equals("west")) {
+            room = westExit;
+        }
+        if(direction.equals("southEast")){
+            room = southEastExit;
+        }
+        return room;
+    }
+
 
 }
