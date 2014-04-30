@@ -41,14 +41,25 @@ public class Game
         biblioteca = new Room(" en la librería ");
         aseos = new Room("en los aseos");
         laboratorio = new Room("en el laboratorio");
-        salida = new Room("la salida");
+        salida = new Room("en la salida");
 
         // initialise room exits
-        holl.setExits(aseos, salida, laboratorio, biblioteca, null, null);
-        biblioteca.setExits(null, holl, null,null,null,null);
-        aseos.setExits(null, null, holl, null,salida,null);
-        laboratorio.setExits(holl, salida, null, null,null,biblioteca);
-        salida.setExits(null, null, null, holl,null, aseos);
+
+        holl.setExit("north", aseos);
+        holl.setExit("south", laboratorio);
+        holl.setExit("east", salida);
+        holl.setExit("west", biblioteca);
+
+        biblioteca.setExit("east",holl);
+
+        aseos.setExit("south",holl);
+        aseos.setExit("southEast",salida);
+
+        laboratorio.setExit("north",holl);
+        laboratorio.setExit("northWest",biblioteca);
+
+        salida.setExit("west",holl);
+
 
         currentRoom = holl;  // start game 
     }
@@ -168,7 +179,7 @@ public class Game
     }
 
     private void printLocationInfo(){
-        System.out.println("Tu estás en " + currentRoom.getDescription());
+        System.out.println("Tu estás " + currentRoom.getDescription());
         System.out.println(currentRoom.getExitString());
         System.out.println();
     }

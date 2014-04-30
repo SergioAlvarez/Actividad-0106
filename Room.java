@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Set;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -29,30 +30,12 @@ public class Room
         this.description = description;
         exits = new HashMap<>();
     }
-
     /**
-     * Define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     * @param north The north exit.
-     * @param east The east east.
-     * @param south The south exit.
-     * @param west The west exit.
+     * 
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room southEast, Room northWest) 
+    public void setExit(String direction, Room neighbor)
     {
-        if(north != null)
-            exits.put("north", north);
-        if(east != null)
-            exits.put("east", east);
-        if(south != null)
-            exits.put("south" ,south );
-        if(west != null)
-            exits.put("west" ,west );
-        if(southEast != null)
-            exits.put("southEast" ,southEast);
-        if(northWest != null)
-            exits.put("northWest" ,northWest );
-
+        exits.put(direction, neighbor);
     }
 
     /**
@@ -65,26 +48,7 @@ public class Room
 
     public Room getExit(String direction)
     {
-        Room roomReturn = null;
-        if(direction.equals("north")){
-            roomReturn = exits.get("north");
-        }
-        if(direction.equals("south")){
-            roomReturn = exits.get("south");
-        }
-        if(direction.equals("east")){
-            roomReturn = exits.get("east");
-        }
-        if(direction.equals("west")){
-            roomReturn = exits.get("west");
-        }
-        if(direction.equals("southEast")){
-            roomReturn = exits.get("southEast");
-        }
-        if(direction.equals("northWest")){
-            roomReturn = exits.get("northWest");
-        }
-        return roomReturn;
+        return exits.get(direction);
     }
 
     /**
@@ -95,24 +59,11 @@ public class Room
      */
     public String getExitString()
     {
-        String exit = "Exits: " ;
-        if(exits.get("north")!= null){
-            exit += "north ";
-        }
-        if(exits.get("east") != null){
-            exit += "east ";
-        }
-        if(exits.get("soth") != null){
-            exit += "south ";
-        }
-        if(exits.get("west") != null){
-            exit += "west ";
-        }
-        if(exits.get("southEast") != null){
-            exit += "southEast ";
-        }
-        if(exits.get("northWest") != null){
-            exit += "northWest ";
+        Set<String> nameOfdirection = exits.keySet();
+        String exit = "Exits :";
+        for(String direction : nameOfdirection)
+        {
+            exit += direction + " ";
         }
         return exit;
     }
