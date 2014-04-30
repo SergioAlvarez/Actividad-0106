@@ -60,7 +60,6 @@ public class Game
 
         salida.setExit("west",holl);
 
-
         currentRoom = holl;  // start game 
     }
 
@@ -179,8 +178,6 @@ public class Game
     }
 
     private void printLocationInfo(){
-        System.out.println("Tu estás " + currentRoom.getDescription());
-        System.out.println(currentRoom.getExitString());
-        System.out.println();
+        currentRoom.getLongDescription();
     }
 }
