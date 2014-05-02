@@ -64,10 +64,11 @@ public class Parser
     }
 
     /**
-     * 
+     * @return El atributo commands.
      */
-    public CommandWords getCommandValid()
+    public void printCommandValid()
     {
-        return commands;
+        commands.showAll();
     }
+   
 }
