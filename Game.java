@@ -37,11 +37,11 @@ public class Game
         Room holl, biblioteca, aseos, laboratorio, salida;
 
         // create the rooms
-        holl = new Room(" en el holl ");
-        biblioteca = new Room(" en la librería ");
-        aseos = new Room("en los aseos");
-        laboratorio = new Room("en el laboratorio");
-        salida = new Room("en la salida");
+        holl = new Room(" en el holl ", "piedra", 25);
+        biblioteca = new Room(" en la librería ","tijera",2);
+        aseos = new Room("en los aseos","televisor",15);
+        laboratorio = new Room("en el laboratorio","coche",250);
+        salida = new Room("en la salida","mesa",17);
 
         // initialise room exits
 
@@ -59,7 +59,7 @@ public class Game
         laboratorio.setExit("northWest",biblioteca);
 
         salida.setExit("west",holl);
-
+        
         currentRoom = holl;  // start game 
     }
 
@@ -120,6 +120,8 @@ public class Game
         }
         else if (commandWord.equals("look")){
              currentRoom.getLongDescription();
+             System.out.println("Objeto : " +currentRoom.getObjeto());
+             System.out.println("Peso : " + currentRoom.getPeso());
         }
         else if(commandWord.equals("eat")){
             System.out.println("You have eaten now and you are not hungry any more");
